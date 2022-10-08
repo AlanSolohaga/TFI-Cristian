@@ -23,6 +23,9 @@ mongoose.connect(mongo_uri,function(err){
     }
 });
 
+//POST porque se envian datos
+//req tiene todo lo del index
+//res es la respueta
 app.post('/register', (req,res)=>{
     const {username,password} = req.body;
     const user = new User({username,password});
@@ -42,6 +45,7 @@ app.post('/authenticate', (req,res)=>{
 
     User.findOne({username},(err,userObtein)=>{
         console.log("el uer: " +userObtein)
+        
         if(err){
             res.status(500).send('ERROR AL AUTENTICAR 1');
         }else if(!userObtein){
